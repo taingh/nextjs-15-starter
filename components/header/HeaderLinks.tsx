@@ -6,16 +6,8 @@ export const headerLinks = [
   {
     name: "blogs",
     href: "/blogs",
-  },
-  {
-    name: "about",
-    href: "/about",
-  },
-  {
-    name: "sourceCode",
-    href: SOURCE_CODE_URL,
-    target: "_blank",
-    rel: "noopener noreferrer nofollow",
+    target: "self",
+    rel: undefined,
   },
 ];
 

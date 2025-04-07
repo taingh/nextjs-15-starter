@@ -1,14 +1,16 @@
-import { Newsletter } from "@/components/footer/Newsletter";
+'use client'
 import { TwitterX } from "@/components/social-icons/icons";
 import { siteConfig } from "@/config/site";
-import { Link as I18nLink } from "@/i18n/routing";
+import { Link as I18nLink, usePathname, useRouter } from "@/i18n/routing";
 import { GithubIcon, MailIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { SiBluesky } from "react-icons/si";
 
 export default function Footer() {
   const t = useTranslations("Home");
   const tFooter = useTranslations("Footer");
+  const router = useRouter();
+  const pathname = usePathname();
+
   return (
     <div className="bg-gray-800 dark:bg-primary-foreground text-gray-300">
       <footer className="py-2 border-t border-gray-700">
@@ -39,18 +41,6 @@ export default function Footer() {
                       <GithubIcon className="size-4" aria-hidden="true" />
                     </a>
                   )}
-                  {siteConfig.socialLinks.bluesky && (
-                    <a
-                      href={siteConfig.socialLinks.bluesky}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                      aria-label="Blue Sky"
-                      title="View on Bluesky"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <SiBluesky className="w-4 h-4" aria-hidden="true" />
-                    </a>
-                  )}
                   {siteConfig.socialLinks.twitter && (
                     <a
                       href={siteConfig.socialLinks.twitter}
@@ -78,9 +68,9 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="w-full flex-1">
+              {/* <div className="w-full flex-1">
                 <Newsletter />
-              </div>
+              </div> */}
             </div>
 
             {footerLinks.map((section) => (
@@ -90,8 +80,15 @@ export default function Footer() {
                 </h3>
                 <ul className="space-y-2 text-sm">
                   {section.links.map((link) => (
-                    <li key={link.href}>
-                      {link.href.startsWith("/") ? (
+                    <li key={link.locale || link.href || link.label}>
+                      {link.locale ? (
+                        <button
+                          onClick={() => router.replace({ pathname, params: {} }, { locale: link.locale })}
+                          className="hover:text-white transition-colors cursor-pointer"
+                        >
+                          {link.label}
+                        </button>
+                      ) : link.href && link.href.startsWith("/") ? (
                         <I18nLink
                           href={link.href}
                           title={link.label}
@@ -102,7 +99,7 @@ export default function Footer() {
                         >
                           {link.label}
                         </I18nLink>
-                      ) : (
+                      ) : link.href && (
                         <a
                           href={link.href}
                           title={link.label}
@@ -141,77 +138,31 @@ type FooterLink = {
 };
 
 type Link = {
-  href: string;
+  href?: string;
   label: string;
   target?: string;
   rel?: string;
+  locale?: string;
 };
 
 const footerLinks: FooterLink[] = [
   {
     title: "Languages",
     links: [
-      { href: "/", label: "English" },
-      { href: "/zh", label: "中文" },
-      { href: "/ja", label: "日本語" },
-    ],
-  },
-  {
-    title: "Open Source",
-    links: [
-      {
-        href: "https://github.com/weijunext/nextjs-15-starter",
-        label: "Next Forge",
-        rel: "noopener noreferrer nofollow",
-        target: "_blank",
-      },
-      {
-        href: "https://github.com/weijunext/landing-page-boilerplate",
-        label: "Landing Page Boilerplate",
-        rel: "noopener noreferrer nofollow",
-        target: "_blank",
-      },
-      {
-        href: "https://github.com/weijunext/smart-excel-ai",
-        label: "SaaS Template",
-        rel: "noopener noreferrer nofollow",
-        target: "_blank",
-      },
-      {
-        href: "https://github.com/weijunext/weekly-boilerplate",
-        label: "Blog Boilerplate",
-        rel: "noopener noreferrer nofollow",
-        target: "_blank",
-      },
+      { locale: "en", label: "English" },
+      { locale: "zh", label: "中文" },
+      { locale: "ja", label: "日本語" },
     ],
   },
   {
     title: "Other Products",
     links: [
-      {
-        href: "https://wenext.dev/",
-        label: "WeNext",
-        rel: "noopener noreferrer",
-        target: "_blank",
-      },
-      {
-        href: "https://ntab.dev/",
-        label: "nTab",
-        rel: "noopener noreferrer",
-        target: "_blank",
-      },
-      {
-        href: "https://ogimage.click/",
-        label: "OG Image Generator",
-        rel: "noopener noreferrer",
-        target: "_blank",
-      },
-      {
-        href: "https://nextidea.dev/",
-        label: "Next Idea",
-        rel: "noopener noreferrer",
-        target: "_blank",
-      },
+      // {
+      //   href: "https://wenext.dev/",
+      //   label: "WeNext",
+      //   rel: "noopener noreferrer",
+      //   target: "_blank",
+      // },
     ],
   },
   {

@@ -23,10 +23,9 @@ export const siteConfig: SiteConfig = {
   ],
   creator: '@weijunext',
   socialLinks: {
-    bluesky: BSKY_URL,
-    twitter: TWITTER_URL,
-    email: EMAIL_URL,
-    github: GITHUB_URL,
+    // twitter: TWITTER_URL,
+    // email: EMAIL_URL,
+    // github: GITHUB_URL,
   },
   themeColors: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
