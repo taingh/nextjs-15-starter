@@ -83,7 +83,7 @@ export default function Footer() {
                     <li key={link.locale || link.href || link.label}>
                       {link.locale ? (
                         <button
-                          onClick={() => router.replace({ pathname, params: {} }, { locale: link.locale })}
+                          onClick={() => router.replace(pathname, { locale: link.locale })}
                           className="hover:text-white transition-colors cursor-pointer"
                         >
                           {link.label}

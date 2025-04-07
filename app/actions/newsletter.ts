@@ -4,10 +4,11 @@ import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
-// initialize resend
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Check if Resend API key is configured
+const hasResend = !!process.env.RESEND_API_KEY;
+const resend = hasResend ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// Resend Audience ID
+// Resend Audience ID - only relevant if hasResend is true
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID!;
 
 // initialize Redis
@@ -57,32 +58,36 @@ export async function subscribeToNewsletter(email: string) {
     //   return { success: true, alreadySubscribed: true };
     // }
 
-    // Add to audience
-    await resend.contacts.create({
-      audienceId: AUDIENCE_ID,
-      email: normalizedEmail,
-    });
+    if (hasResend && resend) {
+      // Add to audience
+      await resend.contacts.create({
+        audienceId: AUDIENCE_ID,
+        email: normalizedEmail,
+      });
 
-    // Send welcome email
-    const unsubscribeToken = Buffer.from(normalizedEmail).toString('base64');
-    const unsubscribeLink = `${process.env.NEXT_PUBLIC_SITE_URL}/unsubscribe?token=${unsubscribeToken}`;
+      // Send welcome email
+      const unsubscribeToken = Buffer.from(normalizedEmail).toString('base64');
+      const unsubscribeLink = `${process.env.NEXT_PUBLIC_SITE_URL}/unsubscribe?token=${unsubscribeToken}`;
 
-    await resend.emails.send({
-      from: 'NextForge <' + process.env.ADMIN_EMAIL! + '>',
-      to: normalizedEmail,
-      subject: 'Welcome to Next Forge',
-      html: `
-        <h2>Welcome to Next Forge</h2>
-        <p>Thank you for subscribing to the newsletter. You will receive the latest updates and news.</p>
-        <p style="margin-top: 20px; font-size: 12px; color: #666;">
-          If you wish to unsubscribe, please <a href="${unsubscribeLink}">click here</a>
-        </p>
-      `,
-      headers: {
-        "List-Unsubscribe": `<${unsubscribeLink}>`,
-        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
-      }
-    });
+      await resend.emails.send({
+        from: 'NextForge <' + process.env.ADMIN_EMAIL! + '>',
+        to: normalizedEmail,
+        subject: 'Welcome to Next Forge',
+        html: `
+          <h2>Welcome to Next Forge</h2>
+          <p>Thank you for subscribing to the newsletter. You will receive the latest updates and news.</p>
+          <p style="margin-top: 20px; font-size: 12px; color: #666;">
+            If you wish to unsubscribe, please <a href="${unsubscribeLink}">click here</a>
+          </p>
+        `,
+        headers: {
+          "List-Unsubscribe": `<${unsubscribeLink}>`,
+          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
+        }
+      });
+    } else {
+      console.log('Resend API key not configured, skipping email operations for subscription.');
+    }
 
     return { success: true };
   } catch (error) {
@@ -103,23 +108,30 @@ export async function unsubscribeFromNewsletter(token: string) {
       throw new Error(error || 'Invalid email address');
     }
 
-    // Check if subscribed
-    const list = await resend.contacts.list({ audienceId: AUDIENCE_ID });
-    const user = list.data?.data.find((item) => item.email === normalizedEmail);
+    if (hasResend && resend) {
+      // Check if subscribed
+      const list = await resend.contacts.list({ audienceId: AUDIENCE_ID });
+      const user = list.data?.data.find((item) => item.email === normalizedEmail);
 
-    if (!user) {
-      throw new Error('This email is not subscribed to our notifications');
+      if (!user) {
+        throw new Error('This email is not subscribed to our notifications');
+      }
+
+      // Remove from audience
+      await resend.contacts.remove({
+        audienceId: AUDIENCE_ID,
+        email: normalizedEmail,
+      });
+    } else {
+      console.log('Resend API key not configured, skipping email operations for unsubscription.');
+      // If Resend is not configured, we can't verify if the user was subscribed or remove them.
+      // We might return success here, or throw an error depending on desired behavior.
+      // Returning success to avoid breaking the flow if Resend is optional.
     }
-
-    // Remove from audience
-    await resend.contacts.remove({
-      audienceId: AUDIENCE_ID,
-      email: normalizedEmail,
-    });
 
     return { success: true, email: normalizedEmail };
   } catch (error) {
     console.error('Newsletter unsubscribe failed:', error);
     throw error;
   }
-} 
+}

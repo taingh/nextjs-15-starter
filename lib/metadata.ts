@@ -53,9 +53,9 @@ export async function constructMetadata({
   // build alternate language links
   const alternateLanguages = Object.keys(LOCALE_NAMES).reduce((acc, lang) => {
     const path = canonicalUrl
-      ? `/${lang === DEFAULT_LOCALE ? '' : lang}${canonicalUrl}`
+      ? `${lang === DEFAULT_LOCALE ? '' : lang}${canonicalUrl}`
       : `/${lang === DEFAULT_LOCALE ? '' : lang}`
-    acc[lang] = `${siteConfig.url}/${path}`
+    acc[lang] = `${siteConfig.url}${path}`
     return acc
   }, {} as Record<string, string>)
 
@@ -67,7 +67,7 @@ export async function constructMetadata({
     creator: siteConfig.creator,
     metadataBase: new URL(siteConfig.url),
     alternates: {
-      canonical: canonicalUrl ? `${siteConfig.url}/${canonicalUrl}` : undefined,
+      canonical: canonicalUrl ? `${siteConfig.url}${canonicalUrl}` : undefined,
       languages: alternateLanguages,
     },
     openGraph: {
