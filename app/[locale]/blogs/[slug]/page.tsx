@@ -41,7 +41,7 @@ export async function generateMetadata({
     images: post.image ? [post.image] : [],
     locale: locale as Locale,
     path: `/blogs/${slug}`,
-    // canonicalUrl: `/blogs/${slug}`,
+    canonicalUrl: `/blogs/${slug}`,
   });
 }
 

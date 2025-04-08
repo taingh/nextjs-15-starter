@@ -52,6 +52,7 @@ export async function generateMetadata({
     description: t("description"),
     locale: locale as Locale,
     path: `/terms-of-service`,
+    canonicalUrl: `/terms-of-service`,
   });
 }
 
