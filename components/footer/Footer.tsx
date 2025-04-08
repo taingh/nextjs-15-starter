@@ -119,14 +119,9 @@ export default function Footer() {
         </div>
       </footer>
       <div className="mt-2 p-4 flex justify-center items-center border-t border-gray-700 text-center text-sm text-gray-400">
-        <I18nLink
-          href="/about"
-          title="About"
-          prefetch={false}
-          className=" hover:text-white transition-colors"
-        >
+        <span className="text-gray-400">
           {tFooter("Copyright", { year: new Date().getFullYear() })}
-        </I18nLink>
+        </span>
       </div>
     </div>
   );
