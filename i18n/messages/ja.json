@@ -82,5 +82,24 @@
         "description": "アイデアが尽きました。誠に申し訳ありません。"
       }
     }
+  },
+  "WhatIs": {
+    "title": "Next Forgeとは？",
+    "subtitle": "グローバルウェブサイト向けの強力な機能を備えた多言語Next.jsスターターテンプレート",
+    "learnMore": "詳細を見る",
+    "items": {
+      "item1": {
+        "title": "多言語サポート",
+        "description": "グローバルな視聴者にリーチするための組み込み多言語サポート"
+      },
+      "item2": {
+        "title": "モダンUIデザイン",
+        "description": "Tailwind CSSによる美しくレスポンシブなインターフェース"
+      },
+      "item3": {
+        "title": "SEO最適化",
+        "description": "可視性を向上させるための完全に最適化された検索エンジン対応"
+      }
+    }
   }
 }

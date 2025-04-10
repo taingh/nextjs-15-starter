@@ -2,6 +2,7 @@ import { HomePageHero } from "@/components/home/hero"; // Import HomePageHero co
 import { useTranslations } from "next-intl";
 import { FAQ } from "./faq";
 import { Features } from "./feature";
+import WhatIs from "./WhatIs";
 
 export default function HomeComponent() {
   const t = useTranslations("Home");
@@ -11,6 +12,7 @@ export default function HomeComponent() {
       {/* Content container */}
       <div className="relative z-10"> {/* Ensure content is above background */}
         <HomePageHero />
+        <WhatIs />
         <Features />
         <FAQ />
       </div>

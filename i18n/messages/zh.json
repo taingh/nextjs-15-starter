@@ -100,5 +100,24 @@
         "answer": "我们提供详细的文档和示例代码。如果你遇到问题，可以在 GitHub 上提出 issue，或者加入我们的社区获取帮助。我们致力于为开发者提供最好的支持。"
       }
     }
+  },
+  "WhatIs": {
+    "title": "什么是 Next Forge？",
+    "subtitle": "一个功能强大的多语言 Next.js 启动模板，为全球网站开发而设计",
+    "learnMore": "了解更多",
+    "items": {
+      "item1": {
+        "title": "多语言支持",
+        "description": "内置多语言支持，帮助您触达全球受众"
+      },
+      "item2": {
+        "title": "现代UI设计",
+        "description": "基于Tailwind CSS的美观响应式界面"
+      },
+      "item3": {
+        "title": "SEO优化",
+        "description": "全面优化的搜索引擎表现，提高网站可见性"
+      }
+    }
   }
 }

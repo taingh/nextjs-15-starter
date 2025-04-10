@@ -100,5 +100,24 @@
         "answer": "We provide detailed documentation and example code. If you encounter any issues, you can raise them on GitHub or join our community for assistance. We are committed to providing the best support for developers."
       }
     }
+  },
+  "WhatIs": {
+    "title": "What is Next Forge?",
+    "subtitle": "A multilingual Next.js starter template with powerful features for global websites",
+    "learnMore": "Learn More",
+    "items": {
+      "item1": {
+        "title": "Multilingual Support",
+        "description": "Built-in support for multiple languages to reach a global audience"
+      },
+      "item2": {
+        "title": "Modern UI Design",
+        "description": "Beautiful and responsive interface with Tailwind CSS"
+      },
+      "item3": {
+        "title": "SEO Optimized",
+        "description": "Fully optimized for search engines to improve visibility"
+      }
+    }
   }
 }
