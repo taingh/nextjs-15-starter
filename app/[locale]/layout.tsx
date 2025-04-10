@@ -6,6 +6,7 @@ import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import { LanguageDetectionAlert } from "@/components/LanguageDetectionAlert";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
+import GridBackground from "@/components/ui/grid-background"; // Import GridBackground
 import { siteConfig } from "@/config/site";
 import { DEFAULT_LOCALE, Locale, routing } from "@/i18n/routing";
 import { constructMetadata } from "@/lib/metadata";
@@ -74,7 +75,15 @@ export default async function LocaleLayout({
             {messages.LanguageDetection && <LanguageDetectionAlert />}
             {messages.Header && <Header />}
 
-            <main className="flex flex-col items-center py-6">{children}</main>
+            <main className="relative flex flex-col items-center pb-6">
+              <GridBackground
+                className={cn(
+                  "absolute top-0 left-0 w-full h-screen -z-10", // Position absolutely relative to main, cover screen height, place behind content
+                  "[mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]" // Keep the mask
+                )}
+              />
+              {children}
+            </main>
 
             {messages.Footer && <Footer />}
 

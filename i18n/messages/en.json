@@ -29,6 +29,44 @@
     "description": "A multilingual Next.js 15 starter with built-in i18n support. Launch your global-ready web application with a clean, efficient, and SEO-friendly foundation.",
     "whoIsUsing": "Who is Using This Starter"
   },
+  "Features": {
+    "title": "Powerful Features",
+    "subtitle": "Discover our comprehensive suite of features designed to elevate your product experience",
+    "items": {
+      "developers": {
+        "title": "Built for developers",
+        "description": "Built for engineers, developers, dreamers, thinkers and doers."
+      },
+      "ease": {
+        "title": "Ease of use",
+        "description": "It's as easy as using an Apple, and as expensive as buying one."
+      },
+      "pricing": {
+        "title": "Pricing like no other",
+        "description": "Our prices are best in the market. No cap, no lock, no credit card required."
+      },
+      "uptime": {
+        "title": "100% Uptime guarantee",
+        "description": "We just cannot be taken down by anyone."
+      },
+      "architecture": {
+        "title": "Multi-tenant Architecture",
+        "description": "You can simply share passwords instead of buying new seats."
+      },
+      "support": {
+        "title": "24/7 Customer Support",
+        "description": "We are available a 100% of the time. At least our AI Agents are."
+      },
+      "guarantee": {
+        "title": "Money back guarantee",
+        "description": "If you do not like EveryAI, we will convince you to like us."
+      },
+      "everything": {
+        "title": "And everything else",
+        "description": "I just ran out of copy ideas. Accept my sincere apologies."
+      }
+    }
+  },
   "Blogs": {
     "title": "Blog Posts",
     "description": "A list of blog posts"
@@ -44,5 +82,23 @@
   "PrivacyPolicy": {
     "title": "Privacy Policy",
     "description": "Privacy Policy"
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "description": "Learn more about our project",
+    "questions": {
+      "features": {
+        "question": "What features does this project include?",
+        "answer": "This is a complete Next.js starter template with internationalization support, theme switching, TypeScript, Tailwind CSS, shadcn/ui components, and other modern web development best practices. It provides a solid foundation for quickly building high-quality applications."
+      },
+      "i18n": {
+        "question": "How do I add support for a new language?",
+        "answer": "Adding a new language is straightforward. Simply create a new language file in the i18n/messages directory and add the language configuration in i18n/routing.ts. The project uses next-intl for internationalization management, supporting complex translation scenarios."
+      },
+      "support": {
+        "question": "Where can I get help?",
+        "answer": "We provide detailed documentation and example code. If you encounter any issues, you can raise them on GitHub or join our community for assistance. We are committed to providing the best support for developers."
+      }
+    }
   }
 }

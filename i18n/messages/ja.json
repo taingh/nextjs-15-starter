@@ -44,5 +44,43 @@
   "PrivacyPolicy": {
     "title": "プライバシーポリシー",
     "description": "プライバシーポリシー"
+  },
+  "Features": {
+    "title": "パワフル機能",
+    "subtitle": "製品体験を向上させるための包括的な機能セットをご覧ください",
+    "items": {
+      "developers": {
+        "title": "開発者のために構築",
+        "description": "エンジニア、開発者、夢想家、思想家、実行者のために構築されています。"
+      },
+      "ease": {
+        "title": "使いやすさ",
+        "description": "Appleを使うように簡単で、Appleを買うように高価です。"
+      },
+      "pricing": {
+        "title": "他に類を見ない価格設定",
+        "description": "私たちの価格は市場で最高です。上限なし、ロックなし、クレジットカード不要。"
+      },
+      "uptime": {
+        "title": "100%稼働時間保証",
+        "description": "私たちのサービスは誰にも停止させることができません。"
+      },
+      "architecture": {
+        "title": "マルチテナントアーキテクチャ",
+        "description": "新しいシートを購入する代わりに、パスワードを共有するだけで使えます。"
+      },
+      "support": {
+        "title": "24時間365日のカスタマーサポート",
+        "description": "私たちは常時利用可能です。少なくとも私たちのAIエージェントはそうです。"
+      },
+      "guarantee": {
+        "title": "返金保証",
+        "description": "もし製品が気に入らなければ、気に入るように説得します。"
+      },
+      "everything": {
+        "title": "その他すべて",
+        "description": "アイデアが尽きました。誠に申し訳ありません。"
+      }
+    }
   }
 }

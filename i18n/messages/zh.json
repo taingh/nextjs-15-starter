@@ -29,6 +29,44 @@
     "description": "内置多语言支持的 Next.js 15 启动模板，助您快速构建面向全球的出海网站。简洁高效，开箱即用，完全优化的SEO基础架构。",
     "whoIsUsing": "谁在使用此模板"
   },
+  "Features": {
+    "title": "强大的功能特性",
+    "subtitle": "探索我们全面的功能套件，提升您的产品体验",
+    "items": {
+      "developers": {
+        "title": "为开发者打造",
+        "description": "专为工程师、开发者、梦想家、思想家和行动派打造。"
+      },
+      "ease": {
+        "title": "简单易用",
+        "description": "使用起来就像苹果产品一样简单，价格也像苹果一样昂贵。"
+      },
+      "pricing": {
+        "title": "无与伦比的定价",
+        "description": "我们的价格是市场上最好的。无上限，无锁定，无需信用卡。"
+      },
+      "uptime": {
+        "title": "100%运行时间保证",
+        "description": "我们的服务永不停机，任何人都无法使其宕机。"
+      },
+      "architecture": {
+        "title": "多租户架构",
+        "description": "您可以简单地共享密码，而不必购买新的席位。"
+      },
+      "support": {
+        "title": "24/7客户支持",
+        "description": "我们全天候提供服务。至少我们的AI助手是如此。"
+      },
+      "guarantee": {
+        "title": "退款保证",
+        "description": "如果您不喜欢我们的产品，我们会说服您喜欢上它。"
+      },
+      "everything": {
+        "title": "以及其他一切",
+        "description": "我已经想不出更多创意了。请接受我诚挚的歉意。"
+      }
+    }
+  },
   "Blogs": {
     "title": "博客列表",
     "description": "博客列表"
@@ -44,5 +82,23 @@
   "PrivacyPolicy": {
     "title": "隐私政策",
     "description": "隐私政策"
+  },
+  "FAQ": {
+    "title": "常见问题",
+    "description": "了解更多关于我们的项目",
+    "questions": {
+      "features": {
+        "question": "这个项目有哪些特点？",
+        "answer": "这是一个基于 Next.js 的完整启动模板，包含国际化支持、主题切换、TypeScript、Tailwind CSS、shadcn/ui 组件等现代 Web 开发最佳实践。它提供了一个坚实的基础，让你可以快速开始构建高质量的应用。"
+      },
+      "i18n": {
+        "question": "如何添加新的语言支持？",
+        "answer": "添加新语言非常简单。只需在 i18n/messages 目录下创建新的语言文件，然后在 i18n/routing.ts 中添加语言配置即可。项目使用 next-intl 进行国际化管理，支持复杂的翻译场景。"
+      },
+      "support": {
+        "question": "在哪里可以获取帮助？",
+        "answer": "我们提供详细的文档和示例代码。如果你遇到问题，可以在 GitHub 上提出 issue，或者加入我们的社区获取帮助。我们致力于为开发者提供最好的支持。"
+      }
+    }
   }
 }
