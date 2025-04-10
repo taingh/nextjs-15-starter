@@ -4,20 +4,21 @@ import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 
 export default function AdsterraBanner() {
-  // 获取环境变量
-  const adSrc = process.env.NEXT_PUBLIC_ADSTERRA_SRC || '';
-  const containerId = process.env.NEXT_PUBLIC_ADSTERRA_CONTAINER_ID || '';
-
-  // 如果任一环境变量为空，则不展示组件
-  if (!adSrc || !containerId) {
-    return null;
-  }
-
+  // 先声明所有hooks
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
+  // 获取环境变量
+  const adSrc = process.env.NEXT_PUBLIC_ADSTERRA_SRC || '';
+  const containerId = process.env.NEXT_PUBLIC_ADSTERRA_CONTAINER_ID || '';
+
+  // 是否应该渲染组件
+  const shouldRender = Boolean(adSrc && containerId);
+
   useEffect(() => {
+    if (!shouldRender) return;
+
     const checkMobile = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
@@ -29,7 +30,12 @@ export default function AdsterraBanner() {
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [shouldRender]);
+
+  // 如果不应该渲染组件，直接返回null
+  if (!shouldRender) {
+    return null;
+  }
 
   return (
     <div className="w-full flex justify-center my-1 px-2">
