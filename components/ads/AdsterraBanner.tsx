@@ -1,13 +1,11 @@
 "use client"
 
 import Script from 'next/script';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function AdsterraBanner() {
   // 先声明所有hooks
   const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   // 获取环境变量
   const adSrc = process.env.NEXT_PUBLIC_ADSTERRA_SRC || '';
@@ -48,18 +46,16 @@ export default function AdsterraBanner() {
           w-full
         `}
       >
-        {/* 加载Adsterra脚本 */}
+        {/* 使用官方提供的脚本方式 */}
         <Script
-          src={adSrc}
-          strategy="lazyOnload"
           async
           data-cfasync="false"
-          onLoad={() => setIsScriptLoaded(true)}
+          src={adSrc}
+          strategy="afterInteractive"
         />
 
         {/* Adsterra广告容器 */}
         <div
-          ref={containerRef}
           id={containerId}
           className={`
             w-full
