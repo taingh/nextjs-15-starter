@@ -80,15 +80,8 @@ export default function Footer() {
                 </h3>
                 <ul className="space-y-2 text-sm">
                   {section.links.map((link) => (
-                    <li key={link.locale || link.href || link.label}>
-                      {link.locale ? (
-                        <button
-                          onClick={() => router.replace(pathname, { locale: link.locale })}
-                          className="hover:text-white transition-colors cursor-pointer"
-                        >
-                          {link.label}
-                        </button>
-                      ) : link.href && link.href.startsWith("/") ? (
+                    <li key={link.href}>
+                      {link.href.startsWith("/") && !link.useA ? (
                         <I18nLink
                           href={link.href}
                           title={link.label}
@@ -137,16 +130,16 @@ type Link = {
   label: string;
   target?: string;
   rel?: string;
-  locale?: string;
+  useA?: boolean;
 };
 
 const footerLinks: FooterLink[] = [
   {
     title: "Languages",
     links: [
-      { locale: "en", label: "English" },
-      { locale: "zh", label: "中文" },
-      { locale: "ja", label: "日本語" },
+      { href: "/en", label: "English", useA: true },
+      { href: "/zh", label: "中文", useA: true },
+      { href: "/ja", label: "日本語", useA: true },
     ],
   },
   {

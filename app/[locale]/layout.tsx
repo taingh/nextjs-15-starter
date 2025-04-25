@@ -65,7 +65,11 @@ export default async function LocaleLayout({
   return (
     <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
       <head />
-      <body className={cn("min-h-screen bg-background font-sans antialiased")}>
+      <body
+        className={cn(
+          "min-h-screen bg-background flex flex-col font-sans antialiased"
+        )}
+      >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -75,21 +79,14 @@ export default async function LocaleLayout({
             {messages.LanguageDetection && <LanguageDetectionAlert />}
             {messages.Header && <Header />}
 
-            <main className="relative flex flex-col items-center pb-6">
-              <GridBackground
-                className={cn(
-                  "absolute top-0 left-0 w-full h-screen -z-10", // Position absolutely relative to main, cover screen height, place behind content
-                  "[mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]" // Keep the mask
-                )}
-              />
+            <main className="flex-1 flex flex-col items-center">
               {children}
             </main>
 
             {messages.Footer && <Footer />}
-
-            <TailwindIndicator />
           </ThemeProvider>
         </NextIntlClientProvider>
+        <TailwindIndicator />
         {process.env.NODE_ENV === "development" ? (
           <></>
         ) : (

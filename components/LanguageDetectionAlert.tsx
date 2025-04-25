@@ -21,16 +21,16 @@ export function LanguageDetectionAlert() {
   } = useLocaleStore();
 
   useEffect(() => {
-    const detectedLang = navigator.language; // Get full language code, e.g., zh_HK
+    const detectedLang = navigator.language; // Get full language code, e.g., zh-HK
     const storedDismiss = getLangAlertDismissed();
 
     if (!storedDismiss) {
-      // Check if the full language code is supported (e.g., zh_HK)
+      // Check if the full language code is supported (e.g., zh-HK)
       let supportedLang = routing.locales.find((l) => l === detectedLang);
 
       // If full code isn't supported, check primary language (e.g., zh)
       if (!supportedLang) {
-        const mainLang = detectedLang.split("_")[0]; // Get primary language code
+        const mainLang = detectedLang.split("-")[0]; // Get primary language code
         supportedLang = routing.locales.find((l) => l.startsWith(mainLang));
       }
 
