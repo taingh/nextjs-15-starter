@@ -1,0 +1,66 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# English Text Display Guidelines
+
+When writing code that displays text to users, please follow these guidelines:
+
+## General Rules
+
+- All user-facing text should be in English
+- Comments may be in Chinese or English depending on the project requirements
+- Logs should be in English for better debugging
+
+## Code Examples
+
+### React Components
+
+When creating components that display text:
+
+```jsx
+// Good example
+function WelcomeMessage() {
+  return <h1>Welcome to our website</h1>;
+}
+
+// Avoid
+function WelcomeMessage() {
+  return <h1>欢迎访问我们的网站</h1>;
+}
+```
+
+### Console Output
+
+```javascript
+// Good example
+console.log("Operation completed successfully");
+
+// Avoid
+console.log("操作成功完成");
+```
+
+### Error Messages
+
+```javascript
+// Good example
+throw new Error("Invalid input parameter");
+
+// Avoid
+throw new Error("无效的输入参数");
+```
+
+## Internationalization
+
+If the application needs to support multiple languages:
+
+- Use a proper i18n library like [next-intl](mdc:middleware.ts) which is already configured in this project
+- Store translations in separate files
+- Use English as the default/fallback language
+
+## Exception Cases
+
+- Marketing materials or specific regional content may use Chinese where appropriate
+- Documentation may be bilingual when targeting Chinese-speaking developers
+
